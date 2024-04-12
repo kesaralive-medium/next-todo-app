@@ -18,8 +18,7 @@ import {
 import {Input} from "@/components/ui/input"
 
 import {useToast} from "@/components/ui/use-toast";
-import {ToastAction, ToastProps} from "@/components/ui/toast";
-
+import { Textarea } from "@/components/ui/textarea"
 import {useState, useTransition} from "react";
 import {FormError} from "@/components/todo/FormError";
 import {FormSuccess} from "@/components/todo/FormSuccess";
@@ -107,9 +106,9 @@ export default function TodoEditForm({onCreateTodo, todoId, title, description}:
                                 <FormField render={({field}) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Input
+                                            <Textarea
                                                 disabled={isPending}
-                                                placeholder="Enter your todo here..." {...field} />
+                                                placeholder="Enter your todo description here..." {...field} />
                                         </FormControl>
                                         <FormMessage/>
 
