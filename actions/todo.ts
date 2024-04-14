@@ -2,6 +2,7 @@
 import * as z from "zod"
 import {CreateTodo, Todo} from "@/schemas/Todo";
 
+const API_URL = "http://localhost:8000/"
 export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
     const validatedFields = CreateTodo.safeParse(todo)
     if (!validatedFields.success) {
@@ -16,7 +17,7 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
     }
 
     try {
-        const response = await fetch('http://localhost:8000/', {
+        const response = await fetch(API_URL, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
 
 export const getTodos = async () => {
     try {
-        const response = await fetch('http://localhost:8000/')
+        const response = await fetch(API_URL)
         if (response.status == 200) {
             const result = await response.json()
             return result;
@@ -49,7 +50,7 @@ export const getTodos = async () => {
 
 export const deleteTodo = async (id: string) => {
     try {
-        const response = await fetch(`http://localhost:8000/${id}`, {
+        const response = await fetch(`${API_URL}${id}`, {
             method: 'delete'
         })
         if (response.status == 204) {
@@ -63,7 +64,7 @@ export const deleteTodo = async (id: string) => {
 
 export const completeTodo = async (id: string) => {
     try {
-        const response = await fetch(`http://localhost:8000/${id}/complete`, {
+        const response = await fetch(`${API_URL}${id}/complete`, {
             method: 'post'
         })
         if (response.status == 200) {
@@ -77,7 +78,7 @@ export const completeTodo = async (id: string) => {
 
 export const incompleteTodo = async (id: string) => {
     try {
-        const response = await fetch(`http://localhost:8000/${id}/incomplete`, {
+        const response = await fetch(`${API_URL}${id}/incomplete`, {
             method: 'post'
         })
         if (response.status == 200) {
@@ -104,7 +105,7 @@ export const updateTodo = async (todo: z.infer<typeof Todo>, id: string) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:8000/${id}`, {
+        const response = await fetch(`${API_URL}${id}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',
