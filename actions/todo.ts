@@ -17,6 +17,7 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
     }
 
     try {
+        // create a todo
         const response = await fetch(API_URL, {
             method: 'post',
             headers: {
@@ -38,6 +39,7 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
 
 export const getTodos = async () => {
     try {
+        // get todos
         const response = await fetch(API_URL)
         if (response.status == 200) {
             const result = await response.json()
@@ -50,6 +52,7 @@ export const getTodos = async () => {
 
 export const deleteTodo = async (id: string) => {
     try {
+        // delete todo
         const response = await fetch(`${API_URL}${id}`, {
             method: 'delete'
         })
@@ -64,6 +67,7 @@ export const deleteTodo = async (id: string) => {
 
 export const completeTodo = async (id: string) => {
     try {
+        // complete todos
         const response = await fetch(`${API_URL}${id}/complete`, {
             method: 'post'
         })
@@ -78,6 +82,7 @@ export const completeTodo = async (id: string) => {
 
 export const incompleteTodo = async (id: string) => {
     try {
+        // withdraw todos
         const response = await fetch(`${API_URL}${id}/incomplete`, {
             method: 'post'
         })
@@ -105,6 +110,7 @@ export const updateTodo = async (todo: z.infer<typeof Todo>, id: string) => {
     }
 
     try {
+        // update todos
         const response = await fetch(`${API_URL}${id}`, {
             method: 'put',
             headers: {
